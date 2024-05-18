@@ -51,6 +51,10 @@ const Routing: Routes = [
     loadChildren: () => import('../modules/category/category.module').then((m) => m.CategoryModule),
   },
   {
+    path: 'attributes',
+    loadChildren: () => import('../modules/attributes/attributes.module').then((m) => m.AttributesModule),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
