@@ -3,6 +3,7 @@ import { DeleteAttributeComponent } from '../delete-attribute/delete-attribute.c
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { AttributesService } from '../../attributes/service/attributes.service';
+import { CreateAttributeComponent } from '../create-attribute/create-attribute.component';
 
 @Component({
   selector: 'app-list-attribute',
@@ -64,7 +65,7 @@ export class ListAttributeComponent {
   }
 
   openModalCreateAttribute() {
-
+    const modalRef = this.modalServie.open(CreateAttributeComponent,{centered:true,size: 'md'});
   }
 
   openModalEditAttribute(attribute:any){
