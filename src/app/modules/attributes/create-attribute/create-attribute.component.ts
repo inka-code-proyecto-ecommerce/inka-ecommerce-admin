@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AttributesService } from '../../attributes/service/attributes.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -9,16 +9,19 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-attribute.component.scss']
 })
 export class CreateAttributeComponent {
+
+  @Output() AttributeC: EventEmitter<any> = new EventEmitter();
+
   name: string = '';
   type_attribute: number = 1;
-  isLoading$:any;
+  isLoading$: any;
 
   constructor(
-    public attributeService: AttributesService, 
-    public modal: NgbActiveModal, 
+    public attributeService: AttributesService,
+    public modal: NgbActiveModal,
     private toastr: ToastrService,
   ) {
-      
+
   }
 
   ngOnInit(): void {
@@ -26,11 +29,29 @@ export class CreateAttributeComponent {
     //Add 'implements OnInit' to the class.
     this.isLoading$ = this.attributeService.isLoading$;
   }
-  
+
   store() {
-    if(!this.name || !this.type_attribute){
+    if (!this.name || !this.type_attribute) {
       this.toastr.error("Validación", "Todos los campos son necesarios");
       return;
     }
+      let data = {
+        name: this.name,
+        type_attribute: this.type_attribute,
+        status: 1,
+      };
+      this.attributeService.createaAttributes(data).subscribe((resp: any) => {
+        console.log(resp);
+        if(resp.message == 403) {
+          this.toastr.error("Validación", "EL NOMBRE DEL ATRIBUTO YA EXISTE EN LA BASE DE DATOS");
+          return;
+        } else {
+          this.AttributeC.emit(resp.attribute);
+          this.toastr.success("Exitos", "EL ATRIBUTO SE HA REGISTRADO CORRECTAMENTE");
+          this.modal.close();
+          }
+      });
+    }
   }
-}
+
+

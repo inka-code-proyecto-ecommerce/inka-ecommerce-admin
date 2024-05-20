@@ -25,20 +25,21 @@ export class ListAttributeComponent {
   }
 
   ngOnInit(): void {
-    //this.listAttribute();
+    this.listAttribute(); 
     this.isLoading = this.attributesService.isLoading$;
   }
 
   listAttributes(page = 1) {
-    this.attributesService.listAttributes(page, this.search).subscribe((res: any) => {
-      console.log(res);
-      this.attributes = res.attributes.data;
-      this.totalPages = res.total;
+    this.attributesService.listAttributes(page, this.search).subscribe((resp: any) => {
+      console.log(resp);
+      this.attributes = resp.attributes;
+      this.totalPages = resp.total;
       this.currentPage = page;      
     })
   }
-  getNameAttribute(type_attribute:number) {
-    let name_attribute = "";
+  getNameAttribute(type_attribute:any) {
+    var name_attribute = "";
+    type_attribute = parseInt(type_attribute);
     switch (type_attribute) {
       case 1:
         name_attribute = "Texto"
@@ -66,6 +67,10 @@ export class ListAttributeComponent {
 
   openModalCreateAttribute() {
     const modalRef = this.modalServie.open(CreateAttributeComponent,{centered:true,size: 'md'});
+
+    modalRef.componentInstance.AttributeC.subscribe((attrib:any) => {
+      this.attributes.unshift(attrib);
+    })
   }
 
   openModalEditAttribute(attribute:any){

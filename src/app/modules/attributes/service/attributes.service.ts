@@ -8,6 +8,7 @@ import { AuthService } from '../../auth';
   providedIn: 'root'
 })
 export class AttributesService {
+  [x: string]: any;
   deleteAttribute(id: any) {
     throw new Error('Method not implemented.');
   }
