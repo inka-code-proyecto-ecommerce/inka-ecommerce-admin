@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { AttributesService } from '../../attributes/service/attributes.service';
 import { CreateAttributeComponent } from '../create-attribute/create-attribute.component';
+import { EditAttributeComponent } from '../edit-attribute/edit-attribute.component';
 
 @Component({
   selector: 'app-list-attribute',
@@ -21,11 +22,11 @@ export class ListAttributeComponent {
     public attributesService: AttributesService,
     public modalService: NgbModal,
   ) {
-    
+
   }
 
   ngOnInit(): void {
-    this.listAttribute(); 
+    this.listAttribute();
     this.isLoading = this.attributesService.isLoading$;
   }
 
@@ -34,10 +35,10 @@ export class ListAttributeComponent {
       console.log(resp);
       this.attributes = resp.attributes;
       this.totalPages = resp.total;
-      this.currentPage = page;      
+      this.currentPage = page;
     })
   }
-  getNameAttribute(type_attribute:any) {
+  getNameAttribute(type_attribute: any) {
     var name_attribute = "";
     type_attribute = parseInt(type_attribute);
     switch (type_attribute) {
@@ -66,41 +67,36 @@ export class ListAttributeComponent {
   }
 
   openModalCreateAttribute() {
-    const modalRef = this.modalServie.open(CreateAttributeComponent,{centered:true,size: 'md'});
+    const modalRef = this.modalServie.open(CreateAttributeComponent, { centered: true, size: 'md' });
 
-    modalRef.componentInstance.AttributeC.subscribe((attrib:any) => {
+    modalRef.componentInstance.AttributeC.subscribe((attrib: any) => {
       this.attributes.unshift(attrib);
     })
   }
 
-  openModalEditAttribute(attribute:any){
+  openModalEditAttribute(attribute: any) {
+    const modalRef = this.modalServie.open(EditAttributeComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.attribute = attribute;
 
+    modalRef.componentInstance.AttributeE.subscribe((attrib: any) => {
+      //this.attributes.unshift(attrib);
+      let INDEX = this.attributes.findIndex((item: any) => item.id == attrib.id);
+      if (INDEX != -1) {
+        this.attributes[INDEX] = attrib;
+      }
+    })
+  }
+
+  deleteAttribute(attribute: any) {
+    const modalRef = this.modalService.open(DeleteAttributeComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.attribute = attribute;
+
+    modalRef.componentInstance.AttributeD.subscribe((resp: any) => {
+      let INDEX = this.attributes.findIndex((item: any) => item.id == attribute.id);
+      if (INDEX != -1) {
+        this.attributes.splice(INDEX, 1);
+      }
+    })
   }
   
-  deleteAttribute(attribute: any) {
-    Swal.fire({ // Utiliza SweetAlert para confirmar la eliminación
-      title: '¿Estás seguro?',
-      text: '¡No podrás revertir esto!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminarlo!',
-      cancelButtonText: 'Cancelar',
-      customClass: {
-        confirmButton: "btn btn-primary",
-        cancelButton: 'btn btn-danger'
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.attributesService.deleteAttributes(attribute.id).subscribe((res: any) => {
-          let index = this.attributes.findIndex((item: any) => item.id == attribute.id);
-          this.attributes.splice(index, 1);
-          this.toastr.success('Atributo eliminado satisfactoriamente', 'Eliminado');
-        });
-      }
-    });
-  }
-
-  searchTo() {
-    this.listAttribute();
-  }
 }

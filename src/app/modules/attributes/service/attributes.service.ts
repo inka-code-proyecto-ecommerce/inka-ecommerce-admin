@@ -34,15 +34,6 @@ export class AttributesService {
     )
   }
 
-  deleteAttributes(attribute_id: string) {
-    this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/attributes/" + attribute_id;
-    return this.http.delete(URL, { headers: headers }).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    )
-  }
-
   createAttributes(data: any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
@@ -56,7 +47,16 @@ export class AttributesService {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
     const URL = URL_SERVICE + "/admin/attributes/edit/" + attribute_id;
-    return this.http.post(URL, data, { headers: headers }).pipe(
+    return this.http.put(URL, data, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    )
+  }
+  
+  deleteAttributes(attribute_id: string) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
+    const URL = URL_SERVICE + "/admin/attributes/" + attribute_id;
+    return this.http.delete(URL, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     )
   }
