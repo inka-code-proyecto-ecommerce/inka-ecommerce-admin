@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { AttributesService } from '../../attributes/service/attributes.service';
 import { CreateAttributeComponent } from '../create-attribute/create-attribute.component';
 import { EditAttributeComponent } from '../edit-attribute/edit-attribute.component';
+import { SubAttributeCreateComponent } from '../sub-attribute-create/sub-attribute-create.component';
 
 @Component({
   selector: 'app-list-attribute',
@@ -98,5 +99,10 @@ export class ListAttributeComponent {
       }
     })
   }
-  
+
+  openModalRegisterProperties(attribute: any) {
+    const modalRef = this.modalServie.open(SubAttributeCreateComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.attribute = attribute;
+  }
+
 }

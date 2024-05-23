@@ -35,23 +35,23 @@ export class CreateAttributeComponent {
       this.toastr.error("Validación", "Todos los campos son necesarios");
       return;
     }
-      let data = {
-        name: this.name,
-        type_attribute: this.type_attribute,
-        status: 1,
-      };
-      this.attributeService.createAttributes(data).subscribe((resp:any) => {
-        console.log(resp);
-        if(resp.message == 403) {
-          this.toastr.error("Validación", "EL NOMBRE DEL ATRIBUTO YA EXISTE EN LA BASE DE DATOS");
-          return;
-        } else {
-          this.AttributeC.emit(resp.attribute);
-          this.toastr.success("Exitos", "EL ATRIBUTO SE HA REGISTRADO CORRECTAMENTE");
-          this.modal.close();
-          }
-      });
-    }
+    let data = {
+      name: this.name,
+      type_attribute: this.type_attribute,
+      status: 1,
+    };
+    this.attributeService.createAttributes(data).subscribe((resp: any) => {
+      console.log(resp);
+      if (resp.message == 403) {
+        this.toastr.error("Validación", "EL NOMBRE DEL ATRIBUTO YA EXISTE EN LA BASE DE DATOS");
+        return;
+      } else {
+        this.AttributeC.emit(resp.attribute);
+        this.toastr.success("Exitos", "EL ATRIBUTO SE HA REGISTRADO CORRECTAMENTE");
+        this.modal.close();
+      }
+    });
   }
+}
 
 
