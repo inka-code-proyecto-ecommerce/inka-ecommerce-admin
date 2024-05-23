@@ -60,5 +60,23 @@ export class AttributesService {
       finalize(() => this.isLoadingSubject.next(false))
     )
   }
+
+  createProperties(data: any) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
+    const URL = URL_SERVICE + "/admin/properties";
+    return this.http.post(URL, data, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    )
+  }
+
+  deletePropertie(propertie_id: string) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
+    const URL = URL_SERVICE + "/admin/properties/" + propertie_id;
+    return this.http.delete(URL, { headers: headers }).pipe(
+      finalize(() => this.isLoadingSubject.next(false))
+    )
+  }
 }
 
