@@ -1,44 +1,77 @@
-<form id="kt_ecommerce_add_category_form"
-  class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework">
-  <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+<form
+  id="kt_ecommerce_add_category_form"
+  class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework"
+>
+  <div
+    class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10"
+  >
     <div class="card card-flush py-4">
       <div class="card-header">
         <div class="card-title">
-          <h2 [ngClass]="typeCategory == 1 ? 'required': ''">Imagen</h2>
+          <h2 [ngClass]="typeCategory == 1 ? 'required' : ''">Imagen</h2>
         </div>
       </div>
       <div class="card-body text-center pt-0">
-        <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-          style="background-image: url('assets/media/svg/files/blank-image.svg')">
-          <div [ngStyle]="{'background-image': 'url('+ image_prev +')'}" class="image-input-wrapper w-125px h-125px">
-          </div>
-          <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow-sm"
-            data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar"
-            data-bs-original-title="Change avatar" data-kt-initialized="1">
+        <div
+          class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+          style="
+            background-image: url('assets/media/svg/files/blank-image.svg');
+          "
+        >
+          <div
+            [ngStyle]="{ 'background-image': 'url(' + image_prev + ')' }"
+            class="image-input-wrapper w-125px h-125px"
+          ></div>
+          <label
+            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow-sm"
+            data-kt-image-input-action="change"
+            data-bs-toggle="tooltip"
+            aria-label="Change avatar"
+            data-bs-original-title="Change avatar"
+            data-kt-initialized="1"
+          >
             <i class="ki-duotone ki-pencil fs-7">
               <span class="path1"></span>
               <span class="path2"></span>
             </i>
-            <input type="file" (change)="processImage($event)" name="avatar" id="customFile" accept=".png, .jpg, .jpeg">
+            <input
+              type="file"
+              (change)="processImage($event)"
+              name="avatar"
+              id="customFile"
+              accept=".png, .jpg, .jpeg"
+            />
           </label>
-          <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar"
-            data-bs-original-title="Cancel avatar" data-kt-initialized="1">
+          <span
+            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+            data-kt-image-input-action="cancel"
+            data-bs-toggle="tooltip"
+            aria-label="Cancel avatar"
+            data-bs-original-title="Cancel avatar"
+            data-kt-initialized="1"
+          >
             <i class="ki-duotone ki-cross fs-2">
               <span class="path1"></span>
               <span class="path2"></span>
             </i>
           </span>
-          <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-            data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar"
-            data-bs-original-title="Remove avatar" data-kt-initialized="1">
+          <span
+            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+            data-kt-image-input-action="remove"
+            data-bs-toggle="tooltip"
+            aria-label="Remove avatar"
+            data-bs-original-title="Remove avatar"
+            data-kt-initialized="1"
+          >
             <i class="ki-duotone ki-cross fs-2">
               <span class="path1"></span>
               <span class="path2"></span>
             </i>
           </span>
         </div>
-        <div class="text-muted fs-7">Se le permite imagenes de tipo. *.png, *.jpg y *.jpeg</div>
+        <div class="text-muted fs-7">
+          Se le permite imagenes de tipo. *.png, *.jpg y *.jpeg
+        </div>
       </div>
     </div>
     <div class="card card-flush py-4">
@@ -50,7 +83,11 @@
       <div class="card-body pt-0 d-flex flex-column gap-5">
         <div>
           <label class="required fw-bold fs-6 mb-2">Estado</label>
-          <select class="form-control form-select-solid mb-2" name="language" placeholder="Selec. Idioma">
+          <select
+            class="form-control form-select-solid mb-2"
+            name="language"
+            placeholder="Selec. Idioma"
+          >
             <option value="0" selected disabled>Seleccione un estado</option>
             <option value="1">Activo</option>
             <option value="2">Inactivo</option>
@@ -69,11 +106,22 @@
       <div class="card-body pt-0">
         <div class="row g-5">
           <div class="col-12 col-xl-4">
-            <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-              [ngClass]="{'active': typeCategory == 1}" data-kt-button="true">
-              <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                <input (change)="changeTypeCategory(1)" class="form-check-input" type="radio" name="usage" value="1"
-                  [checked]='typeCategory == 1'>
+            <label
+              class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+              [ngClass]="{ active: typeCategory == 1 }"
+              data-kt-button="true"
+            >
+              <span
+                class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1"
+              >
+                <input
+                  (change)="changeTypeCategory(1)"
+                  class="form-check-input"
+                  type="radio"
+                  name="usage"
+                  value="1"
+                  [checked]="typeCategory == 1"
+                />
               </span>
               <span class="ms-5">
                 <span class="fs-6 fw-bolder mb-1 d-block">Departamento</span>
@@ -81,11 +129,22 @@
             </label>
           </div>
           <div class="col-12 col-xl-4">
-            <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-              [ngClass]="{'active': typeCategory == 2}" data-kt-button="true">
-              <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                <input (change)="changeTypeCategory(2)" class="form-check-input" type="radio" name="usage" value="2"
-                  [checked]='typeCategory == 2'>
+            <label
+              class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+              [ngClass]="{ active: typeCategory == 2 }"
+              data-kt-button="true"
+            >
+              <span
+                class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1"
+              >
+                <input
+                  (change)="changeTypeCategory(2)"
+                  class="form-check-input"
+                  type="radio"
+                  name="usage"
+                  value="2"
+                  [checked]="typeCategory == 2"
+                />
               </span>
               <span class="ms-5">
                 <span class="fs-6 fw-bolder mb-1 d-block">Categoría</span>
@@ -93,11 +152,22 @@
             </label>
           </div>
           <div class="col-12 col-xl-4">
-            <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-              [ngClass]="{'active': typeCategory == 3}" data-kt-button="true">
-              <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                <input (change)="changeTypeCategory(3)" class="form-check-input" type="radio" name="usage" value="3"
-                  [checked]='typeCategory == 3'>
+            <label
+              class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+              [ngClass]="{ active: typeCategory == 3 }"
+              data-kt-button="true"
+            >
+              <span
+                class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1"
+              >
+                <input
+                  (change)="changeTypeCategory(3)"
+                  class="form-check-input"
+                  type="radio"
+                  name="usage"
+                  value="3"
+                  [checked]="typeCategory == 3"
+                />
               </span>
               <span class="ms-5">
                 <span class="fs-6 fw-bolder mb-1 d-block">Sub Categoría</span>
@@ -116,17 +186,38 @@
       <div class="card-body pt-0 d-flex flex-column gap-5">
         <div class="fv-row fv-plugins-icon-container">
           <label class="required form-label">Nombre</label>
-          <input type="text" name="name" [(ngModel)]="name" class="form-control" placeholder="Ingrese el nombre">
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+            class="form-control"
+            placeholder="Ingrese el nombre"
+          />
           <div class="text-muted fs-7">El nombre debe ser único.</div>
         </div>
         <div class="fv-row fv-plugins-icon-container">
-          <label class="form-label" [ngClass]="typeCategory == 1 ? 'required': ''">Icono</label>
-          <input type="text" name="icon" [(ngModel)]="icon" class="form-control" placeholder="Ingrese el icono">
+          <label
+            class="form-label"
+            [ngClass]="typeCategory == 1 ? 'required' : ''"
+            >Icono</label
+          >
+          <input
+            type="text"
+            name="icon"
+            [(ngModel)]="icon"
+            class="form-control"
+            placeholder="Ingrese el icono"
+          />
         </div>
         <div class="fv-row fv-plugins-icon-container">
           <label class="required form-label">Posición</label>
-          <input type="number" name="position" [(ngModel)]="position" class="form-control"
-            placeholder="Ingrese la posición">
+          <input
+            type="number"
+            name="position"
+            [(ngModel)]="position"
+            class="form-control"
+            placeholder="Ingrese la posición"
+          />
         </div>
       </div>
     </div>
@@ -138,31 +229,58 @@
       </div>
       <div class="card-body pt-0">
         <div class="d-flex gap-5">
-          <div class="fv-row fv-plugins-icon-container w-100" *ngIf="typeCategory == 2">
+          <div
+            class="fv-row fv-plugins-icon-container w-100"
+            *ngIf="typeCategory == 2"
+          >
             <label class="required fw-bold fs-6 mb-2">Departamento</label>
-            <select class="form-control form-select-solid mb-2" name="second_id" [(ngModel)]="second_id"
-              placeholder="Selec. Departamento">
-              <option value="0" selected disabled>Seleccione un departamento</option>
+            <select
+              class="form-control form-select-solid mb-2"
+              name="second_id"
+              [(ngModel)]="second_id"
+              placeholder="Selec. Departamento"
+            >
+              <option value="0" selected disabled>
+                Seleccione un departamento
+              </option>
               <ng-container *ngFor="let category of categories_first">
                 <option [value]="category.id">{{ category.name }}</option>
               </ng-container>
             </select>
           </div>
-          <div class="fv-row fv-plugins-icon-container w-100" *ngIf="typeCategory == 3">
+          <div
+            class="fv-row fv-plugins-icon-container w-100"
+            *ngIf="typeCategory == 3"
+          >
             <label class="required fw-bold fs-6 mb-2">Departamento</label>
-            <select class="form-control form-select-solid mb-2" name="third_id" [(ngModel)]="third_id"
-              placeholder="Selec. Departamento">
-              <option value="0" selected disabled>Seleccione un departamento</option>
+            <select
+              class="form-control form-select-solid mb-2"
+              name="third_id"
+              [(ngModel)]="third_id"
+              placeholder="Selec. Departamento"
+            >
+              <option value="0" selected disabled>
+                Seleccione un departamento
+              </option>
               <ng-container *ngFor="let category of categories_first">
                 <option [value]="category.id">{{ category.name }}</option>
               </ng-container>
             </select>
           </div>
-          <div class="fv-row fv-plugins-icon-container w-100" *ngIf="typeCategory == 3">
+          <div
+            class="fv-row fv-plugins-icon-container w-100"
+            *ngIf="typeCategory == 3"
+          >
             <label class="required fw-bold fs-6 mb-2">Categoría</label>
-            <select class="form-control form-select-solid mb-2" name="second_id" [(ngModel)]="second_id"
-              placeholder="Selec. Categoría">
-              <option value="0" selected disabled>Seleccione una categoría</option>
+            <select
+              class="form-control form-select-solid mb-2"
+              name="second_id"
+              [(ngModel)]="second_id"
+              placeholder="Selec. Categoría"
+            >
+              <option value="0" selected disabled>
+                Seleccione una categoría
+              </option>
               <ng-container *ngFor="let category of categories_second">
                 <option [value]="category.id">{{ category.name }}</option>
               </ng-container>
@@ -172,11 +290,23 @@
       </div>
     </div>
     <div class="d-flex justify-content-end">
-      <a href="apps/ecommerce/catalog/products.html" class="btn btn-light me-5">Cancelar</a>
-      <button (click)="save()" type="button" class="btn btn-primary" [disabled]="isLoading | async">
-        <span *ngIf="!(isLoading | async)" class="indicator-label">Guardar</span>
+      <a href="apps/ecommerce/catalog/products.html" class="btn btn-light me-5"
+        >Cancelar</a
+      >
+      <button
+        (click)="save()"
+        type="button"
+        class="btn btn-primary"
+        [disabled]="isLoading | async"
+      >
+        <span *ngIf="!(isLoading | async)" class="indicator-label"
+          >Guardar</span
+        >
         <span *ngIf="isLoading | async">Espera...</span>
-        <span *ngIf="isLoading | async" class="spinner-border spinner-border-sm align-middle ms-2"></span>
+        <span
+          *ngIf="isLoading | async"
+          class="spinner-border spinner-border-sm align-middle ms-2"
+        ></span>
       </button>
     </div>
   </div>
