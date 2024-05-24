@@ -1,1 +1,101 @@
-<p>edit-sliders works!</p>
+<form id="kt_ecommerce_add_category_form"
+  class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework">
+  <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+    <div class="card card-flush py-4">
+      <div class="card-header">
+        <div class="card-title">
+          <h2 class="form-label">Sube tu Imagen: </h2>
+        </div>
+      </div>
+      <div class="card-body text-center pt-0">
+        <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" style="
+            background-image: url('assets/media/svg/files/blank-image.svg');
+          ">
+          <div [ngStyle]="{ 'background-image': 'url(' + image_prev + ')' }"
+            class="image-input-wrapper w-125px h-125px"></div>
+          <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow-sm"
+            data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar"
+            data-bs-original-title="Change avatar" data-kt-initialized="1">
+            <i class="ki-duotone ki-pencil fs-7">
+              <span class="path1"></span>
+              <span class="path2"></span>
+            </i>
+            <input type="file" (change)="processImage($event)" name="avatar" id="customFile"
+              accept=".png, .jpg, .jpeg" />
+          </label>
+          <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar"
+            data-bs-original-title="Cancel avatar" data-kt-initialized="1">
+            <i class="ki-duotone ki-cross fs-2">
+              <span class="path1"></span>
+              <span class="path2"></span>
+            </i>
+          </span>
+          <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+            data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar"
+            data-bs-original-title="Remove avatar" data-kt-initialized="1">
+            <i class="ki-duotone ki-cross fs-2">
+              <span class="path1"></span>
+              <span class="path2"></span>
+            </i>
+          </span>
+        </div>
+        <div class="text-muted fs-7">
+          Se le permite imagenes de tipo. *.png, *.jpg y *.jpeg
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+
+    <div class="card card-flush">
+
+      <div class="card-body pt-0 d-flex flex-column gap-5">
+        <div class="col-lg-8 fv-row fv-plugins-icon-container">
+          <label class="fw-semibold fs-6 py-2">Titulo: (*)</label>
+          <input type="text" name="title" [(ngModel)]="title" class="form-control"
+            placeholder="Por ejemplo: The best note book collection 2024" />
+          <div class="text-muted fs-7">El nombre debe ser único.</div>
+        </div>
+        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+          <label class="fw-semibold fs-6 py-2">Label : (Opcional)</label>
+          <input type="text" name="label" [(ngModel)]="label" class="form-control form-control-lg form-control-solid"
+            placeholder="Starting at 9900" />
+        </div>
+        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+          <label class="fw-semibold fs-6 py-2">Subtitulo : (*)</label>
+          <input type="text" name="subtitle" [(ngModel)]="subtitle"
+            class="form-control form-control-lg form-control-solid" placeholder="Starting at 9900" />
+        </div>
+        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+          <label class="fw-semibold fs-6 py-2">Link (Opcional)</label>
+          <input type="text" name="link" [(ngModel)]="link" class="form-control form-control-lg form-control-solid"
+            placeholder="http://dominio.com" />
+        </div>
+        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+          <label for="etiqueta_especial" class="required fw-bold fs-6 mb-2">Color: </label>
+          <input class="form-control" type="color" id="color" name="color" [(ngModel)]="color" />
+        </div>
+      </div>
+      <div class="card-body pt-0 d-flex flex-column gap-5">
+        <div>
+          <label class="required fw-bold fs-6 mb-2">Estado</label>
+          <select class="form-control form-select-solid mb-2" name="state" [(ngModel)]="state" placeholder="Selec. Idioma">
+            <option value="0" selected disabled>Seleccione un estado</option>
+            <option value="1">Activo</option>
+            <option value="2">Inactivo</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <a href="apps/ecommerce/catalog/products.html" class="btn btn-light me-5">Cancelar</a>
+      <button (click)="save()" type="button" class="btn btn-primary" [disabled]="isLoading | async">
+        <span *ngIf="!(isLoading | async)" class="indicator-label">Guardar</span>
+        <span *ngIf="isLoading | async">Espera...</span>
+        <span *ngIf="isLoading | async" class="spinner-border spinner-border-sm align-middle ms-2"></span>
+      </button>
+    </div>
+  </div>
+</form>
