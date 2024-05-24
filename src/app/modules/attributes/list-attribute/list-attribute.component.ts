@@ -27,7 +27,7 @@ export class ListAttributeComponent {
   }
 
   ngOnInit(): void {
-    this.listAttribute();
+    this.listAttributes();
     this.isLoading = this.attributesService.isLoading$;
   }
 
@@ -68,7 +68,7 @@ export class ListAttributeComponent {
   }
 
   openModalCreateAttribute() {
-    const modalRef = this.modalServie.open(CreateAttributeComponent, { centered: true, size: 'md' });
+    const modalRef = this.modalService.open(CreateAttributeComponent, { centered: true, size: 'md' });
 
     modalRef.componentInstance.AttributeC.subscribe((attrib: any) => {
       this.attributes.unshift(attrib);
@@ -76,7 +76,7 @@ export class ListAttributeComponent {
   }
 
   openModalEditAttribute(attribute: any) {
-    const modalRef = this.modalServie.open(EditAttributeComponent, { centered: true, size: 'md' });
+    const modalRef = this.modalService.open(EditAttributeComponent, { centered: true, size: 'md' });
     modalRef.componentInstance.attribute = attribute;
 
     modalRef.componentInstance.AttributeE.subscribe((attrib: any) => {
@@ -101,7 +101,7 @@ export class ListAttributeComponent {
   }
 
   openModalRegisterProperties(attribute: any) {
-    const modalRef = this.modalServie.open(SubAttributeCreateComponent, { centered: true, size: 'md' });
+    const modalRef = this.modalService.open(SubAttributeCreateComponent, { centered: true, size: 'md' });
     modalRef.componentInstance.attribute = attribute;
   }
 
