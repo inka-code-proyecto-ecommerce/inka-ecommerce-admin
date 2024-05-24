@@ -17,16 +17,33 @@ export class EditSlidersComponent {
   state: number = 1;
   image_prev: any = '';
   file_image: any = null;
-  isLoading: any;
+  isLoading$: any;
+  slider_id: string = '';
 
   constructor(
     public sliderService: SlidersService,
     public toastr: ToastrService,
-    public actibedRouter: ActivatedRoute
-  ) {}
+    public activedRoute: ActivatedRoute,
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.isLoading = this.sliderService.isLoading$;
+    this.isLoading$ = this.sliderService.isLoading$;
+    this.activedRoute.params.subscribe((resp: any) => {
+      this.slider_id = resp.id;
+    });
+
+    this.sliderService.showSlider(this.slider_id).subscribe((resp: any) => {
+      console.log(resp);
+      this.title = resp.slider.title;
+      this.label = resp.slider.label;
+      this.subtitle = resp.slider.subtitle;
+      this.link = resp.slider.link;
+      this.color = resp.slider.color;
+      this.state = resp.slider.state;
+      this.image_prev = resp.slider.image;
+    });
   }
 
   processImage($event: any) {
@@ -53,7 +70,7 @@ export class EditSlidersComponent {
   }
 
   save() {
-    if (!this.title || !this.subtitle || !this.file_image) {
+    if (!this.title || !this.subtitle) {
       this.toastr.error('Ingrese todos los datos correctamente', 'Validación');
       return;
     }
@@ -61,10 +78,12 @@ export class EditSlidersComponent {
     let formData = new FormData();
     formData.append('title', this.title);
     if (this.label) {
-      formData.append('icon', this.label);
+      formData.append('label', this.label);
     }
     formData.append('subtitle', this.subtitle + '');
-    formData.append('image', this.file_image);
+    if (this.file_image) {
+      formData.append('image', this.file_image);
+    }
     if (this.link) {
       formData.append('link', this.link);
     }
@@ -72,17 +91,9 @@ export class EditSlidersComponent {
       formData.append('color', this.color);
     }
 
-    this.sliderService.createSliders(formData).subscribe((res: any) => {
-      console.log(res);
-
-      this.title = '';
-      this.label = '';
-      this.subtitle = '';
-      this.link = '';
-      this.color = '';
-      this.file_image = null;
-      this.image_prev = '';
-      this.toastr.success("Exito", "El Slider se registró correctamente");
+    this.sliderService.updateSliders(this.slider_id, formData).subscribe((resp: any) => {
+      console.log(resp);
+      this.toastr.success("Exito", "El Slider se editó correctamente");
     });
   }
 }
