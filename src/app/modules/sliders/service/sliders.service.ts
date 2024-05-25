@@ -8,6 +8,7 @@ import { AuthService } from '../../auth';
   providedIn: 'root',
 })
 export class SlidersService {
+  
   isLoading$: Observable<boolean>;
   isLoadingSubject: BehaviorSubject<boolean>;
 

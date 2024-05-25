@@ -15,7 +15,7 @@ export class CreateSlidersComponent {
   color: string = '';
   image_prev: any = '';
   file_image: any = null;
-  isLoading: any;
+  isLoading$: any;
 
   constructor(
     public sliderService: SlidersService,
@@ -23,7 +23,7 @@ export class CreateSlidersComponent {
   ) {}
 
   ngOnInit(): void {
-    this.isLoading = this.sliderService.isLoading$;
+    this.isLoading$ = this.sliderService.isLoading$;
   }
 
   processImage($event: any) {
@@ -58,7 +58,7 @@ export class CreateSlidersComponent {
     let formData = new FormData();
     formData.append('title', this.title);
     if (this.label) {
-      formData.append('icon', this.label);
+      formData.append('label', this.label);
     }
     formData.append('subtitle', this.subtitle + '');
     formData.append('image', this.file_image);

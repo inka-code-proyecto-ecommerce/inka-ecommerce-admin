@@ -58,6 +58,10 @@ export class CreateCategoryComponent {
     this.typeCategory = val;
   }
 
+  changeDepartamento() {
+    this.categories_second = this.categories_second.filter((item:any) => item.category_second_id === this.typeCategory, true);
+  }
+
   save() {
     if (!this.name || !this.position) {
       this.toastr.error('Ingrese todos los datos correctamente', 'Validación');
