@@ -73,9 +73,12 @@ const Routing: Routes = [
   {
     path: 'sliders',
     loadChildren: () =>
-      import('../modules/sliders/sliders.module').then(
-        (m) => m.SlidersModule
-      ),
+      import('../modules/sliders/sliders.module').then((m) => m.SlidersModule),
+  },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('../modules/products/products.module').then((m) => m.ProductsModule),
   },
   {
     path: '',
