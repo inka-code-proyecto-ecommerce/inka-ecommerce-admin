@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../service/product.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-create-product',
@@ -17,6 +18,8 @@ export class CreateProductComponent {
   description: any = '<p>Hello, World!</p>';
   image_prev: any = '';
   file_image: any = null;
+  marca_id: string = '';
+  marcas: any = [];
 
   isLoading$: any;
 
@@ -29,6 +32,10 @@ export class CreateProductComponent {
   categories_thirds: any = [];
   categories_thirds_backups: any = [];
 
+  dropdownList: any = [];
+  selectedItems: any = [];
+  dropdownSettings: IDropdownSettings = {};
+
   constructor(
     public productService: ProductService,
     public toastr: ToastrService,
@@ -38,6 +45,34 @@ export class CreateProductComponent {
 
   ngOnInit(): void {
     this.isLoading$ = this.productService.isLoading$;
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Mumbai' },
+      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' },
+      { item_id: 6, item_text: 'Laravest' }
+    ];
+    this.selectedItems = [
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 6, item_text: 'Laravest' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      // itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+  addItems() {
+    this.dropdownList.push(
+      { item_id: 7, item_text: 'EchoDev' },
+    );
   }
 
   processImage($event: any) {
@@ -64,11 +99,18 @@ export class CreateProductComponent {
   }
 
   changeDepartamento() {
-    this.categories_seconds_backups = this.categories_seconds.filter((item: any) => item.category_second_id == this.category_third_id);
+    this.categories_seconds_backups = this.categories_seconds.filter((item: any) => item.category_second_id == this.category_first_id);
   }
 
   changeCategory() {
-    
+    this.categories_thirds_backups = this.categories_thirds.filter((item: any) => item.category_second_id == this.category_second_id);
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   save() {

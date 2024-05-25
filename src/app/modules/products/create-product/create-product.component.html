@@ -46,65 +46,71 @@
       </div>
     </div>
   </div>
-
   <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
     <div class="card card-flush">
       <div class="card-body pt-0 d-flex flex-column gap-5">
-
         <div class="row mb-6">
-          <div class="col-lg-6 fv-row fv-plugins-icon-container">
-            <label class="fw-semibold fs-6 py-2">Titulo: (*)</label>
-            <input type="text" name="title" [(ngModel)]="title" class="form-control form-control-lg form-control-solid"
+          <div class="col-lg-8 fv-row fv-plugins-icon-container">
+            <label class="fs-6 fw-semibold py-4">Titulo: (*)</label>
+            <input type="text" name="title" (keyup.enter)="addItems()" [(ngModel)]="title" class="form-control form-control-lg form-control-solid"
               placeholder="Por ejemplo: The best note book collection 2024" />
-            <div class="text-muted fs-7">El nombre debe ser único.</div>
           </div>
-          <div class="col-lg-6 fv-row fv-plugins-icon-container">
-            <label class="fw-semibold fs-6 py-2">Sku: (*)</label>
+          <div class="col-lg-4 fv-row fv-plugins-icon-container">
+            <label class="fs-6 fw-semibold py-4">Sku: (*)</label>
             <input type="text" name="sku" [(ngModel)]="sku" class="form-control form-control-lg form-control-solid"
               placeholder="Por ejemplo: ZDR456" />
-            <div class="text-muted fs-7">El nombre debe ser único.</div>
           </div>
-
           <div class="row mb-6">
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
-              <label class="fw-semibold fs-6 py-2">Precio PEN: (*)</label>
+              <label class="fw-semibold fs-6 py-4">Precio PEN: (*)</label>
               <input type="number" name="price_pen" [(ngModel)]="price_pen"
                 class="form-control form-control-lg form-control-solid" placeholder="Por ejemplo: 20 PEN " />
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
-              <label class="fw-semibold fs-6 py-2">PRECIO USD: (*)</label>
+              <label class="fw-semibold fs-6 py-4">PRECIO USD: (*)</label>
               <input type="number" name="price_usd" [(ngModel)]="price_usd"
                 class="form-control form-control-lg form-control-solid" placeholder="Por ejemplo: 20 USD " />
             </div>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+              <label class="fw-semibold fs-6 py-4">Marcas: (*)</label>
+              <select class="form-control form-select-solid mb-2" name="marca" placeholder="Selec. Marca"
+                [(ngModel)]="marca_id">
+                <option value="">
+                  Selec. Marca
+                </option>
+                <ng-container *ngFor="let category of marcas">
+                  <option [value]="category.id">{{ category.name }}</option>
+                </ng-container>
+              </select>
+            </div>
           </div>
-
           <div class="row mb-6">
-            <div class="col-4">
-              <label class="fw-semibold fs-6 mb-2">Departamento: (Primer Nivel *)</label>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+              <label class="fw-semibold fs-6 py-4">Departamento: (Primer Nivel *)</label>
               <select class="form-control form-select-solid mb-2" name="departament" placeholder="Selec. Departamento"
                 [(ngModel)]="category_first_id" (change)="changeDepartamento()">
                 <option value="">
-                  Selec. un departamento
+                  Selec. un Departamento
                 </option>
                 <ng-container *ngFor="let category of categories_first">
                   <option [value]="category.id">{{ category.name }}</option>
                 </ng-container>
               </select>
             </div>
-            <div class="col-4">
-              <label class="fw-semibold fs-6 mb-2">Categoría: (Segundo Nivel *)</label>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+              <label class="fw-semibold fs-6 py-4">Categoría: (Segundo Nivel *)</label>
               <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Categoría"
                 [(ngModel)]="category_second_id" (change)="changeCategory()">
                 <option value="">
-                  Selec. una categoría
+                  Selec. una Categoría
                 </option>
                 <ng-container *ngFor="let category of categories_seconds_backups">
                   <option [value]="category.id">{{ category.name }}</option>
                 </ng-container>
               </select>
             </div>
-            <div class="col-4">
-              <label class="fw-semibold fs-6 mb-2">Sub Categoría: (Tercer Nivel *)</label>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+              <label class="fw-semibold fs-6 py-4">Sub Categoría: (Tercer Nivel *)</label>
               <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Sub Categoría"
                 [(ngModel)]="category_third_id">
                 <option value="">
@@ -116,22 +122,31 @@
               </select>
             </div>
           </div>
-
-          <div class="col-lg-12 fv-row fv-plugins-icon-container">
-            <label class="fs-6 fw-semibold mb-2">Descripción: </label>
-            <div>
-              <ckeditor [data]="description"></ckeditor>
+          <div class="row mb-6">
+            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+              <label class="fw-semibold fs-6 mb-3">Tags: </label>
+              <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [settings]="dropdownSettings"
+                [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown>
             </div>
           </div>
-          <div class="col-lg-12 fv-row fv-plugins-icon-container">
-            <label class="fs-6 fw-semibold mb-2">Resumen: </label>
-            <textarea class="form-control form-control-solid" rows="3" name="resumen" [(ngModel)]="resumen"
-              placeholder="******"></textarea>
+          <div class="row mb-6">
+            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+              <label class="fs-6 fw-semibold mb-2">Descripción: </label>
+              <div>
+                <ckeditor [data]="description"></ckeditor>
+              </div>
+            </div>
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+              <label class="fs-6 fw-semibold mb-2">Resumen: </label>
+              <textarea class="form-control form-control-solid" rows="4" name="resumen" [(ngModel)]="resumen"
+                placeholder="******"></textarea>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <div class="d-flex justify-content-end">
       <a href="apps/ecommerce/catalog/products.html" class="btn btn-light me-5">Cancelar</a>
       <button (click)="save()" type="button" class="btn btn-primary" [disabled]="isLoading$ | async">
