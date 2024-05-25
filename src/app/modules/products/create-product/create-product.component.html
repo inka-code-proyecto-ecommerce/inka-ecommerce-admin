@@ -11,7 +11,7 @@
         <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" style="
             background-image: url('assets/media/svg/files/blank-image.svg');
           ">
-          <div [ngStyle]="{ 'background-image': 'url(' + image_prev + ')' }"
+          <div [ngStyle]="{ 'background-image': 'url(' + image_previsualiza + ')' }"
             class="image-input-wrapper w-125px h-125px"></div>
           <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow-sm"
             data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar"
@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  < class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+  <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
     <div class="card card-flush">
       <div class="card-body pt-0 d-flex flex-column gap-5">
         <div class="row mb-6">
@@ -68,7 +68,7 @@
                 class="form-control form-control-lg form-control-solid" placeholder="Por ejemplo: 20 PEN " />
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
-              <label class="fw-semibold fs-6 py-4">PRECIO USD: (*)</label>
+              <label class="fw-semibold fs-6 py-4">Precio USD: (*)</label>
               <input type="number" name="price_usd" [(ngModel)]="price_usd"
                 class="form-control form-control-lg form-control-solid" placeholder="Por ejemplo: 20 USD " />
             </div>
@@ -87,9 +87,9 @@
           </div>
           <div class="row mb-6">
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
-              <label class="fw-semibold fs-6 py-4">Departamento: (Primer Nivel *)</label>
+              <label class="fw-semibold fs-6 py-4">Departamento: Primer Nivel (*)</label>
               <select class="form-control form-select-solid mb-2" name="departament" placeholder="Selec. Departamento"
-                [(ngModel)]="category_first_id" (change)="changeDepartamento()">
+                [(ngModel)]="categorie_first_id" (change)="changeDepartamento()">
                 <option value="">
                   Selec. un Departamento
                 </option>
@@ -99,9 +99,9 @@
               </select>
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
-              <label class="fw-semibold fs-6 py-4">Categoría: (Segundo Nivel *)</label>
+              <label class="fw-semibold fs-6 py-4">Categoría: Segundo Nivel (Opcional)</label>
               <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Categoría"
-                [(ngModel)]="category_second_id" (change)="changeCategory()">
+                [(ngModel)]="categorie_second_id" (change)="changeCategory()">
                 <option value="">
                   Selec. una Categoría
                 </option>
@@ -111,9 +111,9 @@
               </select>
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
-              <label class="fw-semibold fs-6 py-4">Sub Categoría: (Tercer Nivel *)</label>
+              <label class="fw-semibold fs-6 py-4">Sub Categoría: Tercer Nivel (Opcional)</label>
               <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Sub Categoría"
-                [(ngModel)]="category_third_id">
+                [(ngModel)]="categorie_third_id">
                 <option value="">
                   Selec. una Sub Categoría
                 </option>
@@ -124,8 +124,13 @@
             </div>
           </div>
           <div class="row mb-6">
-            <div class="col-lg-8 fv-row fv-plugins-icon-container" *ngIf=" !isShowMultiselect">
-              <label class="fw-semibold fs-6 mb-3">Tags: </label>
+            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+              <label class="fw-semibold fs-6 mb-3">Palabras Clave: (*)</label>
+            <input type="text" name="word" (keyup.enter)="addItems()" [(ngModel)]="word" class="form-control form-control-lg form-control-solid"
+              placeholder="Por ejemplo: XXXXX" />
+            </div>
+            <div class="col-lg-6 fv-row fv-plugins-icon-container" *ngIf=" !isShowMultiselect">
+              <label class="fw-semibold fs-6 mb-3">Etiquetas: </label>
               <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [settings]="dropdownSettings"
                 [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
                 (onSelectAll)="onSelectAll($event)">
@@ -153,7 +158,8 @@
           <span *ngIf="!(isLoading$ | async)" class="indicator-label">Guardar</span>
           <span *ngIf="isLoading$ | async">Espera...</span>
           <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm align-middle ms-2"></span>
-        </button>   
+        </button>
       </div>
     </div>
+  </div>
 </form>
