@@ -36,6 +36,8 @@ export class CreateProductComponent {
   selectedItems: any = [];
   dropdownSettings: IDropdownSettings = {};
 
+  isShowMultiselect: boolean = false;
+
   constructor(
     public productService: ProductService,
     public toastr: ToastrService,
@@ -70,9 +72,13 @@ export class CreateProductComponent {
     };
   }
   addItems() {
-    this.dropdownList.push(
-      { item_id: 7, item_text: 'EchoDev' },
-    );
+    this.isShowMultiselect = true;
+    this.dropdownList.push({ item_id: 7, item_text: 'EchoDev' });
+    this.selectedItems.push({ item_id: 7, item_text: 'EchoDev' });
+    setTimeout(() => {
+      this.isShowMultiselect = false;
+      this.isLoadingView();
+    }, 100);
   }
 
   processImage($event: any) {

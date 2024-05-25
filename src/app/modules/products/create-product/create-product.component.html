@@ -46,13 +46,14 @@
       </div>
     </div>
   </div>
-  <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+  < class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
     <div class="card card-flush">
       <div class="card-body pt-0 d-flex flex-column gap-5">
         <div class="row mb-6">
           <div class="col-lg-8 fv-row fv-plugins-icon-container">
             <label class="fs-6 fw-semibold py-4">Titulo: (*)</label>
-            <input type="text" name="title" (keyup.enter)="addItems()" [(ngModel)]="title" class="form-control form-control-lg form-control-solid"
+            <input type="text" name="title" (keyup.enter)="addItems()" [(ngModel)]="title"
+              class="form-control form-control-lg form-control-solid"
               placeholder="Por ejemplo: The best note book collection 2024" />
           </div>
           <div class="col-lg-4 fv-row fv-plugins-icon-container">
@@ -123,7 +124,7 @@
             </div>
           </div>
           <div class="row mb-6">
-            <div class="col-lg-8 fv-row fv-plugins-icon-container">
+            <div class="col-lg-8 fv-row fv-plugins-icon-container" *ngIf=" !isShowMultiselect">
               <label class="fw-semibold fs-6 mb-3">Tags: </label>
               <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [settings]="dropdownSettings"
                 [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
@@ -146,14 +147,13 @@
           </div>
         </div>
       </div>
+      <div class="d-flex justify-content-end">
+        <a href="apps/ecommerce/catalog/products.html" class="btn btn-light me-5">Cancelar</a>
+        <button (click)="save()" type="button" class="btn btn-primary" [disabled]="isLoading$ | async">
+          <span *ngIf="!(isLoading$ | async)" class="indicator-label">Guardar</span>
+          <span *ngIf="isLoading$ | async">Espera...</span>
+          <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm align-middle ms-2"></span>
+        </button>   
+      </div>
     </div>
-    <div class="d-flex justify-content-end">
-      <a href="apps/ecommerce/catalog/products.html" class="btn btn-light me-5">Cancelar</a>
-      <button (click)="save()" type="button" class="btn btn-primary" [disabled]="isLoading$ | async">
-        <span *ngIf="!(isLoading$ | async)" class="indicator-label">Guardar</span>
-        <span *ngIf="isLoading$ | async">Espera...</span>
-        <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm align-middle ms-2"></span>
-      </button>
-    </div>
-  </div>
 </form>
