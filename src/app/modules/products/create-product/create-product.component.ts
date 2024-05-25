@@ -17,7 +17,7 @@ export class CreateProductComponent {
   price_usd: number = 0;
   description: any = '<p>Hello, World!</p>';
   image_prev: any = '';
-  file_image: any = null;
+  file_imagen: any = null;
   marca_id: string = '';
   marcas: any = [];
 
@@ -87,9 +87,9 @@ export class CreateProductComponent {
       this.toastr.error('Solamente se aceptan imágenes', 'Error de validación');
       return;
     }
-    this.file_image = $event.target.files[0];
+    this.file_imagen = $event.target.files[0];
     let reader = new FileReader();
-    reader.readAsDataURL(this.file_image);
+    reader.readAsDataURL(this.file_imagen);
     reader.onloadend = () => (this.image_prev = reader.result);
     this.productService.isLoadingSubject.next(true);
     setTimeout(() => {
@@ -120,20 +120,20 @@ export class CreateProductComponent {
   }
 
   save() {
-    if (!this.title || !this.file_image) {
+    if (!this.title || !this.file_imagen) {
       this.toastr.error('Ingrese todos los datos correctamente', 'Validación');
       return;
     }
 
     let formData = new FormData();
     formData.append('title', this.title);
-    formData.append('image', this.file_image);
+    formData.append('portada', this.file_imagen);
 
     this.productService.createProducts(formData).subscribe((res: any) => {
       console.log(res);
 
       this.title = '';
-      this.file_image = null;
+      this.file_imagen = null;
       this.image_prev = '';
       this.toastr.success("Exito", "El producto se registró correctamente");
     });
