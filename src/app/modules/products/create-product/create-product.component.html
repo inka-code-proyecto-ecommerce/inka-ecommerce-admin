@@ -101,7 +101,7 @@
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
               <label class="fw-semibold fs-6 py-4">Categoría: Segundo Nivel (Opcional)</label>
               <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Categoría"
-                [(ngModel)]="categorie_second_id" (change)="changeCategory()">
+                [(ngModel)]="categorie_second_id" (change)="changeCategorie()">
                 <option value="">
                   Selec. una Categoría
                 </option>
@@ -141,7 +141,7 @@
             <div class="col-lg-8 fv-row fv-plugins-icon-container">
               <label class="fs-6 fw-semibold mb-2">Descripción: </label>
               <div>
-                <ckeditor [data]="description"></ckeditor>
+                <ckeditor [data]="description" (change)="onChange($event)"></ckeditor>
               </div>
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">

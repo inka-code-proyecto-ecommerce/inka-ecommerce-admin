@@ -40,7 +40,7 @@ export class CreateProductComponent {
 
   constructor(
     public productService: ProductService,
-    public toastr: ToastrService
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -123,10 +123,14 @@ export class CreateProductComponent {
     );
   }
 
-  changeCategory() {
+  changeCategorie() {
     this.categories_thirds_backups = this.categories_thirds.filter(
       (item: any) => item.categorie_second_id == this.categorie_second_id
     );
+  }
+
+  public onChange(event: any) {
+    this.description = event.editor.getData();
   }
 
   onItemSelect(item: any) {
