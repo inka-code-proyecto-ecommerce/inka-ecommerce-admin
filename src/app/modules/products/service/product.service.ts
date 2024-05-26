@@ -15,15 +15,15 @@ export class ProductService {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.isLoading$ = this.isLoadingSubject.asObservable();
   }
-  listProducts(page: number = 1, search: string) {
+  listProducts(page: number = 1, data:any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({
       'Authorization': 'Bearer' + this.authservice.token,
     });
     const URL =
-      URL_SERVICE + '/admin/products?page=' + page + '&search=' + search;
+      URL_SERVICE + '/admin/products/index?page=' + page;
     return this.http
-      .get(URL, { headers: headers })
+      .post(URL,data, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 

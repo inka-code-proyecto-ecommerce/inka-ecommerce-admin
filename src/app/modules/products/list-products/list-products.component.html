@@ -4,45 +4,76 @@
     <!--begin::Card title-->
     <div class="row">
       <div class="col-4">
-        <div class="card-title">
-          <!--begin::Search-->
-          <div class="d-flex align-items-center position-relative my-1">
-            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
-              <span class="path1"></span>
-              <span class="path2"></span>
-            </i>
-            <input type="text" (keyup.enter)="searchTo()" [(ngModel)]="search"
-              class="form-control form-control-solid w-250px ps-13" placeholder="Buscar Producto" />
+        <div class="row">
+          <div class="col-12">
+            <div class="card-title">
+              <!--begin::Search-->
+              <div class="d-flex align-items-center position-relative my-1">
+                <i class="ki-duotone ki-magnifier fs-6 position-absolute ms-5">
+                  <span class="path1"></span>
+                  <span class="path2"></span>
+                </i>
+                <input type="text" (keyup.enter)="searchTo()" [(ngModel)]="search"
+                  class="form-control form-control-solid w-250px ps-13" placeholder="Buscar Producto" />
+              </div>
+              <!--end::Search-->
+            </div>
           </div>
-          <!--end::Search-->
+          <div class="col-8">
+            <select class="form-control form-select-solid mb-2" name="marca" placeholder="Selec. Marca"
+              [(ngModel)]="marca_id">
+              <option value="">
+                Selec. Marcas
+              </option>
+              <ng-container *ngFor="let item of marcas">
+                <option [value]="item.id">{{ item.name }}</option>
+              </ng-container>
+            </select>
+          </div>
         </div>
       </div>
-      <div class="col-6">
-        <div class="col-lg-4 fv-row fv-plugins-icon-container">
-          <label class="fw-semibold fs-6 py-4">Marcas: (*)</label>
-          <select class="form-control form-select-solid mb-2" name="marca" placeholder="Selec. Marca"
-            [(ngModel)]="marca_id">
-            <option value="">
-              Selec. Marca
-            </option>
-            <ng-container *ngFor="let item of marcas">
-              <option [value]="item.id">{{ item.name }}</option>
-            </ng-container>
-          </select>
+      <div class="col-5">
+        <div class="row">
+          <div class="col-lg-4 fv-row fv-plugins-icon-container">
+            <select class="form-control form-select-solid mb-2" name="departament" placeholder="Selec. Departamento"
+              [(ngModel)]="categorie_first_id" (change)="changeDepartamento()">
+              <option value="">
+                Selec. Departamento
+              </option>
+              <ng-container *ngFor="let categorie of categories_first">
+                <option [value]="categorie.id">{{ categorie.name }}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <select class="form-control form-select-solid mb-2" name="categorie" placeholder="Selec. Categoría"
+              [(ngModel)]="categorie_second_id" (change)="changeCategorie()">
+              <option value="">
+                Selec. Categoría
+              </option>
+              <ng-container *ngFor="let categorie of categories_seconds_backups">
+                <option [value]="categorie.id">{{ categorie.name }}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <select class="form-control form-select-solid mb-2" name="categorie" placeholder="Selec. Sub Categoría"
+              [(ngModel)]="categorie_third_id">
+              <option value="">
+                Selec. SubCategoría
+              </option>
+              <ng-container *ngFor="let categorie of categories_thirds_backups">
+                <option [value]="categorie.id">{{ categorie.name }}</option>
+              </ng-container>
+            </select>
+          </div>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <!--begin::Card toolbar-->
         <div class="card-toolbar">
           <!--begin::Toolbar-->
           <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-            <!--begin::Filter-->
-            <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click"
-              data-kt-menu-placement="bottom-end">
-              <i class="ki-duotone ki-filter fs-2">
-                <span class="path1"></span>
-                <span class="path2"></span> </i>Filtro
-            </button>
             <!--begin::Menu 1-->
             <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
               <!--begin::Header-->
@@ -98,9 +129,12 @@
               </div>
               <!--end::Content-->
             </div>
-            <a routerLink="/products/register" type="button" class="btn btn-primary" data-bs-toggle="modal"
-              data-bs-target="#kt_modal_add_user">
-              <i class="ki-duotone ki-plus fs-2"></i>Agregar Producto</a>
+            <button routerLink="/products/register" class="btn btn-primary">
+              <div class="ki-duotone fs-1"></div>Agregar Producto
+            </button>
+            <button (click)="searchTo()" class="btn btn-dark mx-2">
+              <div class="ki-duotone fs-1"></div>Buscar
+            </button>
             <!--end::Add user-->
           </div>
           <!--end::Toolbar-->
