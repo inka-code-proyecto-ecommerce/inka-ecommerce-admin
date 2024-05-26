@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../services/categorie.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-category',
-  templateUrl: './list-category.component.html',
-  styleUrls: ['./list-category.component.scss']
+  templateUrl: './list-categorie.component.html',
+  styleUrls: ['./list-categorie.component.scss']
 })
-export class ListCategoryComponent {
+export class ListCategorieComponent {
   categories: any = [];
   search: string = '';
   totalPages: number = 0;
@@ -32,7 +32,7 @@ export class ListCategoryComponent {
       console.log(res);
       this.categories = res.categories.data;
       this.totalPages = res.total;
-      this.currentPage = page;      
+      this.currentPage = page;
     })
   }
 

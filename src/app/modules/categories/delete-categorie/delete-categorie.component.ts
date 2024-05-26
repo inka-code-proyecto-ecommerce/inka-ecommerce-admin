@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../services/categorie.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-delete-category',
-  templateUrl: './delete-category.component.html',
-  styleUrls: ['./delete-category.component.scss']
+  templateUrl: './delete-categorie.component.html',
+  styleUrls: ['./delete-categorie.component.scss']
 })
-export class DeleteCategoryComponent {
+export class DeleteCategorieComponent {
   @Input() category: any;
 
   @Output() CategoryD: EventEmitter<any> = new EventEmitter();

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../services/categorie.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-category',
-  templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.scss']
+  templateUrl: './edit-categorie.component.html',
+  styleUrls: ['./edit-categorie.component.scss']
 })
-export class EditCategoryComponent {
+export class EditCategorieComponent {
   typeCategory = 1;
   name: string = '';
   state: string = '';

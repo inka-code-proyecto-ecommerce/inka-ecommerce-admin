@@ -18,7 +18,7 @@ export class ProductService {
   listProducts(page: number = 1, search: string) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({
-      Authorization: 'Bearer' + this.authservice.token,
+      'Authorization': 'Bearer' + this.authservice.token,
     });
     const URL =
       URL_SERVICE + '/admin/products?page=' + page + '&search=' + search;
@@ -30,7 +30,7 @@ export class ProductService {
   configAll() {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({
-      Authorization: 'Bearer' + this.authservice.token,
+      'Authorization': 'Bearer' + this.authservice.token,
     });
     const URL = URL_SERVICE + '/admin/products/config';
     return this.http
@@ -41,7 +41,7 @@ export class ProductService {
   createProducts(data: any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({
-      Authorization: 'Bearer' + this.authservice.token,
+      'Authorization': 'Bearer' + this.authservice.token,
     });
     const URL = URL_SERVICE + '/admin/products';
     return this.http
@@ -52,7 +52,7 @@ export class ProductService {
   showProduct(product_id: string) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({
-      Authorization: 'Bearer' + this.authservice.token,
+      'Authorization': 'Bearer' + this.authservice.token,
     });
     const URL = URL_SERVICE + '/admin/products/' + product_id;
     return this.http
@@ -63,7 +63,7 @@ export class ProductService {
   updateProducts(product_id: string, data: any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({
-      Authorization: 'Bearer' + this.authservice.token,
+      'Authorization': 'Bearer' + this.authservice.token,
     });
     const URL = URL_SERVICE + '/admin/products/edit/' + product_id;
     return this.http
@@ -79,6 +79,17 @@ export class ProductService {
     const URL = URL_SERVICE + '/admin/products/' + product_id;
     return this.http
       .delete(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
+
+  imagenAdd(data: any) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      'Authorization': 'Bearer' + this.authservice.token,
+    });
+    let URL = URL_SERVICE + '/admin/products/imagens';
+    return this.http
+      .post(URL, data, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
 }

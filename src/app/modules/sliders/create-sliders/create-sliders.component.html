@@ -51,26 +51,30 @@
     <div class="card card-flush">
 
       <div class="card-body pt-0 d-flex flex-column gap-5">
-        <div class="col-lg-8 fv-row fv-plugins-icon-container">
-          <label class="fw-semibold fs-6 py-2">Titulo: (*)</label>
-          <input type="text" name="title" [(ngModel)]="title" class="form-control"
-            placeholder="Por ejemplo: The best note book collection 2024" />
-          <div class="text-muted fs-7">El nombre debe ser único.</div>
+        <div class="row mb-6">
+          <div class="col-lg-6 fv-row fv-plugins-icon-container">
+            <label class="fw-semibold fs-6 py-2">Titulo: (*)</label>
+            <input type="text" name="title" [(ngModel)]="title" class="form-control"
+              placeholder="Por ejemplo: The best note book collection 2024" />
+            <div class="text-muted fs-7">El nombre debe ser único.</div>
+          </div>
+          <div class="col-lg-6 fv-row fv-plugins-icon-container">
+            <label class="fw-semibold fs-6 py-2">Label : (Opcional)</label>
+            <input type="text" name="label" [(ngModel)]="label" class="form-control form-control-lg form-control-solid"
+              placeholder="Starting at 9900" />
+          </div>
         </div>
-        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-          <label class="fw-semibold fs-6 py-2">Label : (Opcional)</label>
-          <input type="text" name="label" [(ngModel)]="label" class="form-control form-control-lg form-control-solid"
-            placeholder="Starting at 9900" />
-        </div>
-        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-          <label class="fw-semibold fs-6 py-2">Subtitulo : (*)</label>
-          <input type="text" name="subtitle" [(ngModel)]="subtitle"
-            class="form-control form-control-lg form-control-solid" placeholder="Starting at 9900" />
-        </div>
-        <div class="col-lg-6 fv-row fv-plugins-icon-container">
-          <label class="fw-semibold fs-6 py-2">Link (Opcional)</label>
-          <input type="text" name="link" [(ngModel)]="link" class="form-control form-control-lg form-control-solid"
-            placeholder="http://dominio.com" />
+        <div class="row mb-6">
+          <div class="col-lg-6 fv-row fv-plugins-icon-container">
+            <label class="fw-semibold fs-6 py-2">Subtitulo : (*)</label>
+            <input type="text" name="subtitle" [(ngModel)]="subtitle"
+              class="form-control form-control-lg form-control-solid" placeholder="Starting at 9900" />
+          </div>
+          <div class="col-lg-6 fv-row fv-plugins-icon-container">
+            <label class="fw-semibold fs-6 py-2">Link (Opcional)</label>
+            <input type="text" name="link" [(ngModel)]="link" class="form-control form-control-lg form-control-solid"
+              placeholder="http://dominio.com" />
+          </div>
         </div>
         <div class="col-lg-6 fv-row fv-plugins-icon-container">
           <label for="etiqueta_especial" class="required fw-bold fs-6 mb-2">Color: </label>

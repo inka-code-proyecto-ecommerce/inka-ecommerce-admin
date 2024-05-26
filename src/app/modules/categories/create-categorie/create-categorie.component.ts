@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../services/categorie.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-category',
-  templateUrl: './create-category.component.html',
-  styleUrls: ['./create-category.component.scss'],
+  templateUrl: './create-categorie.component.html',
+  styleUrls: ['./create-categorie.component.scss'],
 })
-export class CreateCategoryComponent {
-  typeCategory = 1;
+export class CreateCategorieComponent {
+  typeCategorie = 1;
   name: string = '';
   icon: string = '';
   position: number = 1;
   second_id: string = '';
   third_id: string = '';
-  image_prev: any = '';
+  image_previsualiza: any = '';
   file_image: any = null;
   isLoading: any = null;
   categories_first: any = null;
@@ -47,7 +47,7 @@ export class CreateCategoryComponent {
     this.file_image = $event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(this.file_image);
-    reader.onloadend = () => (this.image_prev = reader.result);
+    reader.onloadend = () => (this.image_previsualiza = reader.result);
     this.categoryService.isLoadingSubject.next(true);
     setTimeout(() => {
       this.categoryService.isLoadingSubject.next(false);
@@ -55,11 +55,11 @@ export class CreateCategoryComponent {
   }
 
   changeTypeCategory(val: number) {
-    this.typeCategory = val;
+    this.typeCategorie = val;
   }
 
   changeDepartamento() {
-    this.categories_second = this.categories_second.filter((item:any) => item.category_second_id === this.typeCategory, true);
+    this.categories_second = this.categories_second.filter((item:any) => item.category_second_id === this.typeCategorie, true);
   }
 
   save() {
@@ -68,22 +68,22 @@ export class CreateCategoryComponent {
       return;
     }
 
-    if (this.typeCategory == 1 && !this.icon) {
+    if (this.typeCategorie == 1 && !this.icon) {
       this.toastr.error('El icono es obligatorio', 'Validación');
       return;
     }
 
-    if (this.typeCategory == 1 && !this.file_image) {
+    if (this.typeCategorie == 1 && !this.file_image) {
       this.toastr.error('La imagen es obligatorio', 'Validación');
       return;
     }
 
-    if (this.typeCategory == 2 && !this.second_id) {
+    if (this.typeCategorie == 2 && !this.second_id) {
       this.toastr.error('El departamento es obligatorio', 'Validación');
       return;
     }
 
-    if (this.typeCategory == 3 && (!this.second_id || !this.third_id)) {
+    if (this.typeCategorie == 3 && (!this.second_id || !this.third_id)) {
       this.toastr.error(
         'El departamento y el departamento es obligatorio',
         'Validación'
@@ -97,7 +97,7 @@ export class CreateCategoryComponent {
       formData.append('icon', this.icon);
     }
     formData.append('position', this.position + '');
-    formData.append('type', this.typeCategory + '');
+    formData.append('type', this.typeCategorie + '');
     if (this.file_image) {
       formData.append('image', this.file_image);
     }
@@ -117,9 +117,9 @@ export class CreateCategoryComponent {
       this.name = '';
       this.icon = '';
       this.position = 1;
-      this.typeCategory = 1;
+      this.typeCategorie = 1;
       this.file_image = null;
-      this.image_prev = '';
+      this.image_previsualiza = '';
       this.second_id = '';
       this.third_id = '';
       this.config();
