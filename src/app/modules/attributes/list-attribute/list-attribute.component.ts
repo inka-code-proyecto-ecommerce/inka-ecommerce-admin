@@ -13,12 +13,13 @@ import { SubAttributeCreateComponent } from '../sub-attribute-create/sub-attribu
   styleUrls: ['./list-attribute.component.scss']
 })
 export class ListAttributeComponent {
-  [x: string]: any;
+
   attributes: any = [];
   search: string = '';
   totalPages: number = 0;
   currentPage: number = 1;
 
+  isLoading$: any;
   constructor(
     public attributesService: AttributesService,
     public modalService: NgbModal,
@@ -28,7 +29,7 @@ export class ListAttributeComponent {
 
   ngOnInit(): void {
     this.listAttributes();
-    this.isLoading = this.attributesService.isLoading$;
+    this.isLoading$ = this.attributesService.isLoading$;
   }
 
   listAttributes(page = 1) {
@@ -60,6 +61,10 @@ export class ListAttributeComponent {
     }
 
     return name_attribute;
+  }
+
+  searchTo(){
+    this.listAttributes();
   }
 
   loadPage($event: any) {

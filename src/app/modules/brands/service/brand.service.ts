@@ -7,7 +7,7 @@ import { AuthService } from '../../auth';
 @Injectable({
   providedIn: 'root'
 })
-export class AttributesService {
+export class BrandService {
 
   isLoading$: Observable<boolean>;
   isLoadingSubject: BehaviorSubject<boolean>;
@@ -21,58 +21,40 @@ export class AttributesService {
   }
 
 
-  listAttributes(page: number = 1, search: string) {
+  listBrands(page: number = 1, search: string) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/attributes?page=" + page + "&search=" + search;
+    const URL = URL_SERVICE + "/admin/brands?page=" + page + "&search=" + search;
     return this.http.get(URL, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     )
   }
 
-  createAttributes(data: any) {
+  createBrands(data: any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/attributes";
+    const URL = URL_SERVICE + "/admin/brands";
     return this.http.post(URL, data, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     )
   }
 
-  updateAttributes(attribute_id: string, data: any) {
+  updateBrands(attribute_id: string, data: any) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/attributes/edit/" + attribute_id;
+    const URL = URL_SERVICE + "/admin/brands/edit/" + attribute_id;
     return this.http.put(URL, data, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     )
   }
 
-  deleteAttributes(attribute_id: string) {
+  deleteBrands(attribute_id: string) {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/attributes/" + attribute_id;
+    const URL = URL_SERVICE + "/admin/brands/" + attribute_id;
     return this.http.delete(URL, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     )
   }
-
-  createProperties(data: any) {
-    this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/properties";
-    return this.http.post(URL, data, { headers: headers }).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    )
-  }
-
-  deletePropertie(propertie_id: string) {
-    this.isLoadingSubject.next(true);
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
-    const URL = URL_SERVICE + "/admin/properties/" + propertie_id;
-    return this.http.delete(URL, { headers: headers }).pipe(
-      finalize(() => this.isLoadingSubject.next(false))
-    )
-  }
+  
 }
-

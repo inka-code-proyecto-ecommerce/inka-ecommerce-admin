@@ -6,7 +6,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './modules/auth/services/auth.service';
@@ -17,7 +17,9 @@ import { FakeAPIService } from './_fake/fake-api.service';
 import { ToastrModule } from 'ngx-toastr';
 import { CKEditorModule } from 'ckeditor4-angular';
 // #fake-end#
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+//import { CreateBrandComponent } from './modules/brands/create-brand/create-brand.component';
+//import { EditBrandComponent } from './modules/brands/edit-brand/edit-brand.component';
+//import { ListsBrandComponent } from './modules/brands/lists-brand/lists-brand.component';
 
 function appInitializer(authService: AuthService) {
   return () => {
@@ -47,9 +49,9 @@ function appInitializer(authService: AuthService) {
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
-     //
-     CKEditorModule,
-     //
+    //
+    CKEditorModule,
+    //
     SweetAlert2Module.forRoot(),
     ToastrModule.forRoot(),
     NgbPaginationModule,
