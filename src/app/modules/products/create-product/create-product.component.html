@@ -1,4 +1,4 @@
-<form id="kt_ecommerce_add_category_form"
+<form id="kt_ecommerce_add_product_form"
   class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework">
   <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
     <div class="card card-flush py-4">
@@ -79,8 +79,8 @@
                 <option value="">
                   Selec. Marca
                 </option>
-                <ng-container *ngFor="let category of marcas">
-                  <option [value]="category.id">{{ category.name }}</option>
+                <ng-container *ngFor="let item of marcas">
+                  <option [value]="item.id">{{ item.name }}</option>
                 </ng-container>
               </select>
             </div>
@@ -93,32 +93,32 @@
                 <option value="">
                   Selec. un Departamento
                 </option>
-                <ng-container *ngFor="let category of categories_first">
-                  <option [value]="category.id">{{ category.name }}</option>
+                <ng-container *ngFor="let categorie of categories_first">
+                  <option [value]="categorie.id">{{ categorie.name }}</option>
                 </ng-container>
               </select>
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
               <label class="fw-semibold fs-6 py-4">Categoría: Segundo Nivel (Opcional)</label>
-              <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Categoría"
+              <select class="form-control form-select-solid mb-2" name="product" placeholder="Selec. Categoría"
                 [(ngModel)]="categorie_second_id" (change)="changeCategorie()">
                 <option value="">
                   Selec. una Categoría
                 </option>
-                <ng-container *ngFor="let category of categories_seconds_backups">
-                  <option [value]="category.id">{{ category.name }}</option>
+                <ng-container *ngFor="let categorie of categories_seconds_backups">
+                  <option [value]="categorie.id">{{ categorie.name }}</option>
                 </ng-container>
               </select>
             </div>
             <div class="col-lg-4 fv-row fv-plugins-icon-container">
               <label class="fw-semibold fs-6 py-4">Sub Categoría: Tercer Nivel (Opcional)</label>
-              <select class="form-control form-select-solid mb-2" name="category" placeholder="Selec. Sub Categoría"
+              <select class="form-control form-select-solid mb-2" name="product" placeholder="Selec. Sub Categoría"
                 [(ngModel)]="categorie_third_id">
                 <option value="">
                   Selec. una Sub Categoría
                 </option>
-                <ng-container *ngFor="let category of categories_thirds_backups">
-                  <option [value]="category.id">{{ category.name }}</option>
+                <ng-container *ngFor="let categorie of categories_thirds_backups">
+                  <option [value]="categorie.id">{{ categorie.name }}</option>
                 </ng-container>
               </select>
             </div>

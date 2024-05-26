@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../services/categorie.service';
+import { CategoriesService } from '../services/categorie.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
@@ -17,18 +17,18 @@ export class ListCategorieComponent {
   isLoading: any = null;
 
   constructor(
-    public categoryService: CategoryService,
+    public categorieService: CategoriesService,
     public modalService: NgbModal,
     public toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
     this.listCategories();
-    this.isLoading = this.categoryService.isLoading$;
+    this.isLoading = this.categorieService.isLoading$;
   }
 
   listCategories(page = 1) {
-    this.categoryService.listCategories(page, this.search).subscribe((res: any) => {
+    this.categorieService.listCategories(page, this.search).subscribe((res: any) => {
       console.log(res);
       this.categories = res.categories.data;
       this.totalPages = res.total;
@@ -61,7 +61,7 @@ export class ListCategorieComponent {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        this.categoryService.deleteCategory(category.id).subscribe((res: any) => {
+        this.categorieService.deleteCategory(category.id).subscribe((res: any) => {
           let index = this.categories.findIndex((item: any) => item.id == category.id);
           this.categories.splice(index, 1);
           this.toastr.success('Categoria eliminado satisfactoriamente', 'Eliminado');

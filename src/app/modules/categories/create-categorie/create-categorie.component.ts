@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../services/categorie.service';
+import { CategoriesService } from '../services/categorie.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -21,17 +21,17 @@ export class CreateCategorieComponent {
   categories_second: any = null;
 
   constructor(
-    public categoryService: CategoryService,
+    public categorieService: CategoriesService,
     public toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
-    this.isLoading = this.categoryService.isLoading$;
+    this.isLoading = this.categorieService.isLoading$;
     this.config();
   }
 
   config() {
-    this.categoryService.configCategories().subscribe((res: any) => {
+    this.categorieService.configCategories().subscribe((res: any) => {
       console.log(res);
       this.categories_first = res.categories_first;
       this.categories_second = res.categories_second;
@@ -48,9 +48,9 @@ export class CreateCategorieComponent {
     let reader = new FileReader();
     reader.readAsDataURL(this.file_image);
     reader.onloadend = () => (this.image_previsualiza = reader.result);
-    this.categoryService.isLoadingSubject.next(true);
+    this.categorieService.isLoadingSubject.next(true);
     setTimeout(() => {
-      this.categoryService.isLoadingSubject.next(false);
+      this.categorieService.isLoadingSubject.next(false);
     }, 50);
   }
 
@@ -108,7 +108,7 @@ export class CreateCategorieComponent {
       formData.append('third_id', this.third_id);
     }
 
-    this.categoryService.createCategory(formData).subscribe((res: any) => {
+    this.categorieService.createCategory(formData).subscribe((res: any) => {
       if (res.message == 403) {
         this.toastr.error('Hubo un error al registrar una categoría', 'Error');
         return;

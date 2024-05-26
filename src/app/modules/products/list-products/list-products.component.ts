@@ -14,7 +14,10 @@ export class ListProductsComponent {
   search: string = '';
   totalPages: number = 0;
   currentPage: number = 1;
-  isLoading: any = null;
+  isLoading$: any;
+
+  marcas:any = [];
+  marca_id: string = '';
 
   constructor(
     public productService: ProductService,
@@ -24,7 +27,7 @@ export class ListProductsComponent {
 
   ngOnInit(): void {
     this.listProducts();
-    this.isLoading = this.productService.isLoading$;
+    this.isLoading$ = this.productService.isLoading$;
   }
 
   listProducts(page = 1) {

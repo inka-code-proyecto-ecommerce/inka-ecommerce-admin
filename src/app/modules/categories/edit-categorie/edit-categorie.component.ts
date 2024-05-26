@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../services/categorie.service';
+import { CategoriesService } from '../services/categorie.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class EditCategorieComponent {
   category_id: string = '';
   category: any = null;
   constructor(
-    public categoryService: CategoryService,
+    public categorieService: CategoriesService,
     public toastr: ToastrService,
     public activateRouter: ActivatedRoute,
   ) {
@@ -32,13 +32,13 @@ export class EditCategorieComponent {
   }
 
   ngOnInit(): void {
-    this.isLoading = this.categoryService.isLoading$;
+    this.isLoading = this.categorieService.isLoading$;
     this.config();
     this.activateRouter.params.subscribe((res: any) => {
       this.category_id = res.id;
       console.log(res);
     })
-    this.categoryService.showCategory(this.category_id).subscribe((res: any) => {
+    this.categorieService.showCategory(this.category_id).subscribe((res: any) => {
       this.category = res.category;
       this.typeCategory = res.category.type;
       this.name = res.category.name;
@@ -52,7 +52,7 @@ export class EditCategorieComponent {
   }
 
   config() {
-    this.categoryService.configCategories().subscribe((res: any) => {
+    this.categorieService.configCategories().subscribe((res: any) => {
       console.log(res);
       this.categories_first = res.categories_first;
       this.categories_second = res.categories_second;
@@ -69,9 +69,9 @@ export class EditCategorieComponent {
     let reader = new FileReader();
     reader.readAsDataURL(this.file_image);
     reader.onloadend = () => this.image_prev = reader.result;
-    this.categoryService.isLoadingSubject.next(true)
+    this.categorieService.isLoadingSubject.next(true)
     setTimeout(() => {
-      this.categoryService.isLoadingSubject.next(false)
+      this.categorieService.isLoadingSubject.next(false)
     }, 50);
   }
 
@@ -128,7 +128,7 @@ export class EditCategorieComponent {
 
     formData.append("state", this.state);
 
-    this.categoryService.updateCategory(this.category_id, formData).subscribe((res: any) => {
+    this.categorieService.updateCategory(this.category_id, formData).subscribe((res: any) => {
 
       if (res.message == 403) {
         this.toastr.error("Hubo un error al registrar una categoría", "Error");

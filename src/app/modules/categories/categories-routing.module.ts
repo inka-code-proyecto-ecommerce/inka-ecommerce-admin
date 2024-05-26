@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './category.component';
-import { CreateCategoryComponent } from './create-category/create-category.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
-import { ListCategoryComponent } from './list-category/list-category.component';
+import { CategorieComponent } from './categories.component';
+import { CreateCategorieComponent } from './create-categorie/create-categorie.component';
+import { EditCategorieComponent } from './edit-categorie/edit-categorie.component';
+import { ListCategorieComponent } from './list-categorie/list-categorie.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoryComponent,
+    component: CategorieComponent,
     children: [
       {
         path: 'register',
-        component: CreateCategoryComponent
+        component: CreateCategorieComponent
       },
       {
         path: 'list/edit/:id',
-        component: EditCategoryComponent
+        component: EditCategorieComponent
       },
       {
         path: 'list',
-        component: ListCategoryComponent
+        component: ListCategorieComponent
       }
     ]
   }
@@ -30,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CategoryRoutingModule { }
+export class CategorieRoutingModule { }

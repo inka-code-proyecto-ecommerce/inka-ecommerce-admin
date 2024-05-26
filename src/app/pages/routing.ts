@@ -59,7 +59,7 @@ const Routing: Routes = [
   {
     path: 'categories',
     loadChildren: () =>
-      import('../modules/category/category.module').then(
+      import('../modules/categories/categories.module').then(
         (m) => m.CategoryModule
       ),
   },

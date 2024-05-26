@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CategoryRoutingModule } from './category-routing.module';
-import { CategorieComponent } from './category.component';
-import { CreateCategorieComponent } from './create-category/create-categorie.component';
-import { EditCategorieComponent } from './edit-category/edit-categorie.component';
-import { DeleteCategorieComponent } from './delete-category/delete-categorie.component';
-import { ListCategorieComponent } from './list-category/list-categorie.component';
+import { CategorieRoutingModule } from './categories-routing.module';
+import { CategorieComponent } from './categories.component';
+import { CreateCategorieComponent } from './create-categorie/create-categorie.component';
+import { EditCategorieComponent } from './edit-categorie/edit-categorie.component';
+import { DeleteCategorieComponent } from './delete-categorie/delete-categorie.component';
+import { ListCategorieComponent } from './list-categorie/list-categorie.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, RouterOutlet } from '@angular/router';
@@ -22,7 +22,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    CategoryRoutingModule,
+    CategorieRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
