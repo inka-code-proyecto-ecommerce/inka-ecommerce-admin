@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CategoryService } from '../services/categorie.service';
+import { CategoriesService } from '../services/categorie.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +14,7 @@ export class DeleteCategorieComponent {
   @Output() CategoryD: EventEmitter<any> = new EventEmitter();
   isLoading: any;
   constructor(
-    public categoryService: CategoryService,
+    public categorieService: CategoriesService,
     private toastr: ToastrService,
     public modal: NgbActiveModal,
   ) {
@@ -24,11 +24,11 @@ export class DeleteCategorieComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.isLoading = this.categoryService.isLoading$;
+    this.isLoading = this.categorieService.isLoading$;
   }
 
   delete() {
-    this.categoryService.deleteCategory(this.category.id).subscribe((resp: any) => {
+    this.categorieService.deleteCategory(this.category.id).subscribe((resp: any) => {
       this.CategoryD.emit({ message: 200 });
       this.modal.close();
     })

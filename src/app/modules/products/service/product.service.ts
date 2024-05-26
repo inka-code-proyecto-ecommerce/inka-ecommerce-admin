@@ -92,4 +92,15 @@ export class ProductService {
       .post(URL, data, { headers: headers })
       .pipe(finalize(() => this.isLoadingSubject.next(false)));
   }
+
+  deleteImageProduct(imagen_id: string) {
+    this.isLoadingSubject.next(true);
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer' + this.authservice.token,
+    });
+    const URL = URL_SERVICE + '/admin/products/imagens/' + imagen_id;
+    return this.http
+      .delete(URL, { headers: headers })
+      .pipe(finalize(() => this.isLoadingSubject.next(false)));
+  }
 }

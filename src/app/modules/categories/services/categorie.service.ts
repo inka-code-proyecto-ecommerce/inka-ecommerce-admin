@@ -7,7 +7,7 @@ import { URL_SERVICE } from 'src/config/config';
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryService {
+export class CategoriesService {
   isLoading$: Observable<boolean>;
   isLoadingSubject: BehaviorSubject<boolean>;
 
