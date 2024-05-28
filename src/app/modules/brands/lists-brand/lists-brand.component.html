@@ -127,15 +127,15 @@
                 <td class="d-flex align-items-center">
                   <span>{{ brand.name }}</span>
                 </td>
-                <td data-order="2024-04-18T11:00:30-05:00" class="sorting_1" *ngIf="brands.state == 1">
+                <td data-order="2024-04-18T11:00:30-05:00" class="sorting_1" *ngIf="brand.state == 1">
                   <div class="badge badge-primary fw-bold">Activo</div>
                 </td>
-                <td data-order="2024-04-18T11:00:30-05:00" class="sorting_1" *ngIf="brands.state == 2">
+                <td data-order="2024-04-18T11:00:30-05:00" class="sorting_1" *ngIf="brand.state == 2">
                   <div class="badge badge-danger fw-bold">Inactivo</div>
                 </td>
                 <td>
                   <span>
-                    {{ brands.created_at }}
+                    {{ brand.created_at }}
                   </span>
                 </td>
                 <td class="text-end">

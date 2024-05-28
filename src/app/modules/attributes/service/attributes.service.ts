@@ -43,7 +43,7 @@ export class AttributesService {
     this.isLoadingSubject.next(true);
     let headers = new HttpHeaders({ 'Authorization': 'Bearer' + this.authservice.token });
     const URL = URL_SERVICE + "/admin/attributes/edit/" + attribute_id;
-    return this.http.put(URL, data, { headers: headers }).pipe(
+    return this.http.post(URL, data, { headers: headers }).pipe(
       finalize(() => this.isLoadingSubject.next(false))
     )
   }

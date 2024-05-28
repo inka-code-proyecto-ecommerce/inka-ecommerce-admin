@@ -119,7 +119,7 @@ export class CreateProductComponent {
 
   changeDepartamento() {
     this.categories_seconds_backups = this.categories_seconds.filter(
-      (item: any) => item.categorie_second_id == this.categorie_first_id
+      (item: any) => item.second_id == this.categorie_first_id
     );
   }
 
