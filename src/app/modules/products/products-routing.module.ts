@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { CreateProductComponent } from './create-product/create-product.component';
-import { ListProductsComponent } from './list-products/list-products.component';
+import { LitsProductsComponent } from './lits-products/lits-products.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: ListProductsComponent
+        component: LitsProductsComponent
       },
       {
         path: 'list/edit/:id',
