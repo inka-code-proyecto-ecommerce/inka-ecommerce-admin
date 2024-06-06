@@ -9,17 +9,17 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./delete-product.component.scss']
 })
 export class DeleteProductComponent {
-  
-  @Input() product:any;
-  
+
+  @Input() product: any;
+
   @Output() ProductD: EventEmitter<any> = new EventEmitter();
-  isLoading:any;
+  isLoading: any;
   constructor(
     public productService: ProductService,
     private toastr: ToastrService,
     public modal: NgbActiveModal,
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -27,9 +27,9 @@ export class DeleteProductComponent {
     //Add 'implements OnInit' to the class.
     this.isLoading = this.productService.isLoading$;
   }
-  delete(){
-    this.productService.deleteProduct(this.product.id).subscribe((resp:any) => {
-      this.ProductD.emit({message: 200});
+  delete() {
+    this.productService.deleteProduct(this.product.id).subscribe((resp: any) => {
+      this.ProductD.emit({ message: 200 });
       this.modal.close();
     })
   }
