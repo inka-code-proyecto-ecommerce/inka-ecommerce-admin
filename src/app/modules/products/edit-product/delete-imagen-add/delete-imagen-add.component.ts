@@ -10,16 +10,16 @@ import { ProductService } from '../../service/product.service';
 })
 export class DeleteImagenAddComponent {
 
-  @Input() id:any;
-  
+  @Input() id: any;
+
   @Output() ImagenD: EventEmitter<any> = new EventEmitter();
-  isLoading:any;
+  isLoading: any;
   constructor(
     public productImagenService: ProductService,
     private toastr: ToastrService,
     public modal: NgbActiveModal,
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -27,9 +27,9 @@ export class DeleteImagenAddComponent {
     //Add 'implements OnInit' to the class.
     this.isLoading = this.productImagenService.isLoading$;
   }
-  delete(){
-    this.productImagenService.deleteImageProduct(this.id).subscribe((resp:any) => {
-      this.ImagenD.emit({message: 200});
+  delete() {
+    this.productImagenService.deleteImageProduct(this.id).subscribe((resp: any) => {
+      this.ImagenD.emit({ message: 200 });
       this.modal.close();
     })
   }
