@@ -17,9 +17,6 @@ import { FakeAPIService } from './_fake/fake-api.service';
 import { ToastrModule } from 'ngx-toastr';
 import { CKEditorModule } from 'ckeditor4-angular';
 // #fake-end#
-//import { CreateBrandComponent } from './modules/brands/create-brand/create-brand.component';
-//import { EditBrandComponent } from './modules/brands/edit-brand/edit-brand.component';
-//import { ListsBrandComponent } from './modules/brands/lists-brand/lists-brand.component';
 
 function appInitializer(authService: AuthService) {
   return () => {
