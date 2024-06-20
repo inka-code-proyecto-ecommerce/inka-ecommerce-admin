@@ -6,7 +6,7 @@ export const environment = {
   production: true,
   appVersion: 'v8.1.8',
   USERDATA_KEY: 'authf649fc9a5f55',
-  isMockEnabled: true,
+  isMockEnabled: false,
   apiUrl: 'api',
   appThemeName: 'Metronic',
   appPurchaseUrl: 'https://1.envato.market/EA4JP',
@@ -156,9 +156,10 @@ export const environment = {
       'thumbnail': './assets/media/demos/demo20.png'
     },
   },
-  URL_BACKEND: 'http://127.0.0.1:8000/',
-  URL_SERVICE: 'http://127.0.0.1:8000/api',
-  URL_FRONTEND: 'http://127.0.0.1:5000',
+  URL_BACKEND: 'http://intiphone-api.incadevs.com/',
+  URL_SERVICE: 'http://intiphone-api.incadevs.com/api',
+  URL_FRONTEND: 'http://intiphone-admin.incadevs.com',
+  URL_TIENDA: 'http://intiphone-tienda.incadevs.com',
 };
 
 /*
